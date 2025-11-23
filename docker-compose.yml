@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    container_name: url-shortener-app
+    ports: 
+      - "5000:5000"
+    environment:
+      - FLASK_DEBUG=0
+      - BASE_URL=http://short.ly/
+      - MONGO_URI=mongodb://mongo:27017/urlshortener
+    depends_on:
+      - mongo
+    volumes:
+      - .:/url_shortener
+  
+  mongo:
+    image: mongo:6.0
+    container_name: url-shortener-db
+    restart: always
+    ports: 
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
