@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shorter - Instant URL Shortener</title>
+    <!-- Load Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom font import for a cleaner look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark background for modern look */
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4">
+
+    <!-- Main Content Card -->
+    <div class="w-full max-w-2xl bg-gray-800 p-8 md:p-12 rounded-2xl shadow-2xl transition-all duration-300">
+
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2">
+                ShorterURL.
+            </h1>
+            <p class="text-lg text-gray-400 font-light">
+                Make long links short and shareable, instantly.
+            </p>
+        </header>
+
+        <!-- URL Input Form (Target for Backend Submission) -->
+        <form method="POST" action="/shorten" class="space-y-6">
+            <div class="relative">
+                <input
+                    type="url"
+                    id="long-url"
+                    name="url" 
+                    placeholder="Enter your long URL here (e.g., https://very.long.link/with/many/params)"
+                    required
+                    class="w-full p-4 pr-16 bg-gray-700 text-white border border-gray-600 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150 placeholder-gray-400 text-sm md:text-base"
+                />
+            </div>
+            <button
+                type="submit"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-xl transition duration-300 ease-in-out shadow-lg shadow-blue-500/30 active:scale-[0.99]"
+            >
+                Shorten Link
+            </button>
+        </form>
+
+        {% block notifications %}
+
+        {% endblock %}
+
+        {% block short_url %}
+    
+        {% endblock %}
+
+        <!-- Footer / Credits -->
+        <footer class="text-center mt-12 text-sm text-gray-500">
+            A minimal service concept. Built with <span class="text-red-500">&hearts;</span> and Flask.
+        </footer>
+
+    </div>
+
+</body>
+</html>
